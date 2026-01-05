@@ -270,17 +270,26 @@ function checkoutToWhatsApp() {
         return;
     }
 
-    const promptMsg = currentLang === 'ar'
-        ? "الرجاء إدخال عنوان التوصيل أو رابط الموقع:"
-        : "Please enter your delivery address or paste your Google Maps location link:";
+    // Prompt 1: Physical Address (Mandatory)
+    const addressPrompt = currentLang === 'ar'
+        ? "من فضلك أدخل عنوان التوصيل بالتفصيل (المدينة، الشارع، رقم المبنى، الطابق).\nهذا الحقل إلزامي."
+        : "Please enter your detailed Delivery Address (City, Street, Building, Floor).\nThis field is MANDATORY.";
 
-    const userLocation = prompt(promptMsg);
+    const address = prompt(addressPrompt);
 
-    if (!userLocation || userLocation.trim() === "") {
-        alert(currentLang === 'ar' ? "العنوان مطلوب لإكمال الطلب." : "Address is required to complete the order.");
+    if (!address || address.trim() === "") {
+        alert(currentLang === 'ar' ? "عفواً، يجب إدخال العنوان لإتمام الطلب." : "Error: Address is required to complete the order.");
         return;
     }
 
+    // Prompt 2: Google Maps Link (Optional)
+    const mapsPrompt = currentLang === 'ar'
+        ? "أضف رابط موقعك على خرائط جوجل (اختياري).\nاتركه فارغاً إذا كنت لا تود المشاركة."
+        : "Add Google Maps Location Link (OPTIONAL).\nLeave empty if you don't want to share.";
+
+    const mapsLink = prompt(mapsPrompt);
+
+    // Construct Message
     let messageText = currentLang === 'ar' ? "مرحباً، أود أن أطلب:\n\n" : "Hello, I would like to order:\n\n";
 
     cart.forEach(item => {
@@ -290,7 +299,11 @@ function checkoutToWhatsApp() {
     const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
     messageText += currentLang === 'ar' ? `\n*الإجمالي: ${total.toFixed(2)} EGP*\n` : `\n*Total Order Value: ${total.toFixed(2)} EGP*\n`;
 
-    messageText += currentLang === 'ar' ? `\n*عنوان التوصيل:* ${userLocation}` : `\n*Delivery Location:* ${userLocation}`;
+    messageText += currentLang === 'ar' ? `\n*عنوان التوصيل:* ${address}` : `\n*Delivery Address:* ${address}`;
+
+    if (mapsLink && mapsLink.trim() !== "") {
+        messageText += currentLang === 'ar' ? `\n*رابط الموقع:* ${mapsLink}` : `\n*Location Link:* ${mapsLink}`;
+    }
 
     const encodedMessage = encodeURIComponent(messageText);
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
