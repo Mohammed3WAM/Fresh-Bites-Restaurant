@@ -282,13 +282,6 @@ function checkoutToWhatsApp() {
         return;
     }
 
-    // Prompt 2: Google Maps Link (Optional)
-    const mapsPrompt = currentLang === 'ar'
-        ? "أضف رابط موقعك على خرائط جوجل (اختياري).\nاتركه فارغاً إذا كنت لا تود المشاركة."
-        : "Add Google Maps Location Link (OPTIONAL).\nLeave empty if you don't want to share.";
-
-    const mapsLink = prompt(mapsPrompt);
-
     // Construct Message
     let messageText = currentLang === 'ar' ? "مرحباً، أود أن أطلب:\n\n" : "Hello, I would like to order:\n\n";
 
@@ -300,10 +293,6 @@ function checkoutToWhatsApp() {
     messageText += currentLang === 'ar' ? `\n*الإجمالي: ${total.toFixed(2)} EGP*\n` : `\n*Total Order Value: ${total.toFixed(2)} EGP*\n`;
 
     messageText += currentLang === 'ar' ? `\n*عنوان التوصيل:* ${address}` : `\n*Delivery Address:* ${address}`;
-
-    if (mapsLink && mapsLink.trim() !== "") {
-        messageText += currentLang === 'ar' ? `\n*رابط الموقع:* ${mapsLink}` : `\n*Location Link:* ${mapsLink}`;
-    }
 
     const encodedMessage = encodeURIComponent(messageText);
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
