@@ -1,0 +1,26 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# local_backend: true
+
+media_folder: "images/uploads"
+public_folder: "images/uploads"
+
+collections:
+  - name: "menu"
+    label: "Menu"
+    files:
+      - name: "items"
+        label: "Menu Items"
+        file: "content/menu.json"
+        fields:
+          - label: "Menu Items"
+            name: "menu_items"
+            widget: "list"
+            fields:
+              - {label: "Name", name: "name", widget: "string"}
+              - {label: "Price", name: "price", widget: "number", valueType: "float"}
+              - {label: "Description", name: "description", widget: "text"}
+              - {label: "Category", name: "category", widget: "select", options: ["Breakfast", "Lunch", "Dinner"]}
+              - {label: "Image", name: "image", widget: "image"}

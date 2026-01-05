@@ -1,0 +1,293 @@
+{
+  "menu_items": [
+    {
+      "id": 1,
+      "name_en": "Classic Cheeseburger",
+      "name_ar": "برجر بالجبنة كلاسيك",
+      "desc_en": "Juicy beef patty, cheddar, fresh lettuce, and house sauce.",
+      "desc_ar": "شريحة لحم بقري طرية، شيدر، خس طازج، وصلصة خاصة.",
+      "price": 250,
+      "category": "lunch",
+      "image": "images/classic-cheeseburgers-eat-delicious-XL-BLOG0517-b578f43651854aeb8e2e605580094811.jpg"
+    },
+    {
+      "id": 2,
+      "name_en": "Gourmet Truffle Burger",
+      "name_ar": "برجر ترافل فاخر",
+      "desc_en": "Premium beef, truffle mayo, caramelized onions, brioche bun.",
+      "desc_ar": "لحم بقري فاخر، مايونيز الترافل، بصل مكرمل، خبز بريوش.",
+      "price": 380,
+      "category": "lunch",
+      "image": "images/Hikaru+Funnell+Photography+-+Food+Photography+-+Cheeseburger+-+02-04-24+-+3.webp"
+    },
+    {
+      "id": 3,
+      "name_en": "Fluffy Pancakes",
+      "name_ar": "بان كيك هش",
+      "desc_en": "Stack of fluffy pancakes with maple syrup and berries.",
+      "desc_ar": "كومة من البان كيك الهش مع شراب القيقب والتوت.",
+      "price": 180,
+      "category": "breakfast",
+      "image": "images/Pancake-board-2-500x500.webp"
+    },
+    {
+      "id": 4,
+      "name_en": "Big Breakfast Platter",
+      "name_ar": "طبق إفطار كبير",
+      "desc_en": "Eggs, sausages, toast, beans, and grilled tomatoes.",
+      "desc_ar": "بيض، نقانق، توست، فاصوليا، وطماطم مشوية.",
+      "price": 290,
+      "category": "breakfast",
+      "image": "images/bigbreakfastpancakes.jpg"
+    },
+    {
+      "id": 5,
+      "name_en": "Berry Smoothie",
+      "name_ar": "سموذي التوت",
+      "desc_en": "Fresh mixed berries blended with yogurt and honey.",
+      "desc_ar": "توت مشكل طازج مخلوط مع الزبادي والعسل.",
+      "price": 110,
+      "category": "drinks",
+      "image": "images/Smoothie-Drink-Product-Photography-Studio-in-London-Innocent-Smoothies-Neve-Studios31.webp"
+    },
+    {
+      "id": 6,
+      "name_en": "Tropical Cocktail",
+      "name_ar": "كوكتيل تروبيكال",
+      "desc_en": "Refreshing blend of pineapple, mango, and passion fruit.",
+      "desc_ar": "مزيج منعش من الأناناس والمانجو والباشن فروت.",
+      "price": 130,
+      "category": "drinks",
+      "image": "images/frozen-cocktail-collage-1-1280x720.png"
+    },
+    {
+      "id": 7,
+      "name_en": "Margherita Pizza",
+      "name_ar": "بيتزا مارغريتا",
+      "desc_en": "Classic tomato sauce, fresh mozzarella, and basil.",
+      "desc_ar": "صلصة طماطم كلاسيكية، موتزاريلا طازجة، وريحان.",
+      "price": 220,
+      "category": "lunch",
+      "image": "images/photo-1571066811602-716837d681de.avif"
+    },
+    {
+      "id": 8,
+      "name_en": "Avocado Toast",
+      "name_ar": "توست الأفوكادو",
+      "desc_en": "Sourdough toast topped with smashed avocado and poached egg.",
+      "desc_ar": "خبز العجين المخمر مع الأفوكادو المهروس والبيض.",
+      "price": 160,
+      "category": "breakfast",
+      "image": "images/photo-1601356616077-695728ae17cb.avif"
+    },
+    {
+      "id": 9,
+      "name_en": "Mixed Drinks Special",
+      "name_ar": "مشروبات مشكلة خاصة",
+      "desc_en": "A refreshing assortment of our finest beverages.",
+      "desc_ar": "تشكيلة منعشة من أفضل مشروباتنا.",
+      "price": 140,
+      "category": "drinks",
+      "image": "images/mixed-drinks.jpg"
+    },
+    {
+      "id": 10,
+      "name_en": "Chef's Special Delight",
+      "name_ar": "طبق الشيف المميز",
+      "desc_en": "Exquisite flavors crafted with passion.",
+      "desc_ar": "نكهات رائعة تم إعدادها بشغف.",
+      "price": 320,
+      "category": "lunch",
+      "image": "images/6f17960a-34d0-4bf4-acb2-72928801042d.jpeg"
+    },
+    {
+      "id": 11,
+      "name_en": "Morning Glory",
+      "name_ar": "صباح المجد",
+      "desc_en": "Start your day with this nutritious plate.",
+      "desc_ar": "ابدأ يومك بهذا الطبق المغذي.",
+      "price": 190,
+      "category": "breakfast",
+      "image": "images/photo-1484723091739-30a097e8f929.avif"
+    },
+    {
+      "id": 12,
+      "name_en": "Savory Lunch Blend",
+      "name_ar": "مزيج الغداء الشهي",
+      "desc_en": "A perfect balance of proteins and greens.",
+      "desc_ar": "توازن مثالي بين البروتينات والخضروات.",
+      "price": 260,
+      "category": "lunch",
+      "image": "images/photo-1506084868230-bb9d95c24759.avif"
+    },
+    {
+      "id": 13,
+      "name_en": "Sweet Treat",
+      "name_ar": "تحلية حلوة",
+      "desc_en": "Indulge in something sweet and delightful.",
+      "desc_ar": "استمتع بشيء حلو ولذيذ.",
+      "price": 150,
+      "category": "breakfast",
+      "image": "images/photo-1530610476181-d83430b64dcd.avif"
+    },
+    {
+      "id": 14,
+      "name_en": "Fresh Garden Bowl",
+      "name_ar": "وعاء الحديقة الطازج",
+      "desc_en": "Crisp vegetables and zesty dressing.",
+      "desc_ar": "خضروات مقرمشة وتتبيلة لذيذة.",
+      "price": 180,
+      "category": "lunch",
+      "image": "images/photo-1546793665-c74683f339c1.avif"
+    },
+    {
+      "id": 15,
+      "name_en": "Signature Main Course",
+      "name_ar": "الطبق الرئيسي المميز",
+      "desc_en": "Our chef's recommended dish for lunch.",
+      "desc_ar": "الطبق الموصى به من قبل الشيف للغداء.",
+      "price": 350,
+      "category": "lunch",
+      "image": "images/photo-1560513880-befd0c5761b2.jpg"
+    },
+    {
+      "id": 16,
+      "name_en": "Italian Classic",
+      "name_ar": "كلاسيك إيطالي",
+      "desc_en": "Authentic taste from the heart of Italy.",
+      "desc_ar": "طعم أصيل من قلب إيطاليا.",
+      "price": 280,
+      "category": "lunch",
+      "image": "images/photo-1565299624946-b28f40a0ae38.avif"
+    },
+    {
+      "id": 17,
+      "name_en": "Healthy Start",
+      "name_ar": "بداية صحية",
+      "desc_en": "Fuel your body with wholesome ingredients.",
+      "desc_ar": "غذي مفاهبم بمكونات صحية.",
+      "price": 210,
+      "category": "breakfast",
+      "image": "images/photo-1581559178851-b99664da71ba.avif"
+    },
+    {
+      "id": 18,
+      "name_en": "Crispy Delight",
+      "name_ar": "قرمشة لذيذة",
+      "desc_en": "Perfectly cooked for that extra crunch.",
+      "desc_ar": "مطبوخ بإتقان للحصول على تلك القرمشة الإضافية.",
+      "price": 230,
+      "category": "lunch",
+      "image": "images/photo-1594834749740-74b3f6764be4.avif"
+    },
+    {
+      "id": 19,
+      "name_en": "Weekend Brunch",
+      "name_ar": "برنش نهاية الأسبوع",
+      "desc_en": "The best way to enjoy your weekend.",
+      "desc_ar": "أفضل طريقة للاستمتاع بنهاية أسبوعك.",
+      "price": 270,
+      "category": "breakfast",
+      "image": "images/photo-1627309302198-09a50ae1b209.avif"
+    },
+    {
+      "id": 20,
+      "name_en": "Iced Refresher",
+      "name_ar": "منعش مثلج",
+      "desc_en": "Cool down with this icy beverage.",
+      "desc_ar": "برد على قلبك مع هذا المشروب المثلج.",
+      "price": 95,
+      "category": "drinks",
+      "image": "images/photo-1694450061681-bc7bfac09123.avif"
+    },
+    {
+      "id": 21,
+      "name_en": "Premium Selection",
+      "name_ar": "تشكيلة بريميوم",
+      "desc_en": "Top quality ingredients for a top quality meal.",
+      "desc_ar": "مكونات عالية الجودة لوجبة عالية الجودة.",
+      "price": 400,
+      "category": "lunch",
+      "image": "images/istockphoto-2226275895-2048x2048.jpg"
+    },
+    {
+      "id": 22,
+      "name_en": "Gourmet Platter",
+      "name_ar": "طبق جورميه",
+      "desc_en": "A mix of our finest appetizers.",
+      "desc_ar": "مزيج من أفضل المقبلات لدينا.",
+      "price": 310,
+      "category": "lunch",
+      "image": "images/premium_photo-1672242676668-17d9d981e447.avif"
+    },
+    {
+      "id": 23,
+      "name_en": "Tasty Bites",
+      "name_ar": "لقيمات شهية",
+      "desc_en": "Small bites, big flavor.",
+      "desc_ar": "لقيمات صغيرة، نكهة كبيرة.",
+      "price": 175,
+      "category": "lunch",
+      "image": "images/premium_photo-1674147611133-be87db07f597.avif"
+    },
+    {
+      "id": 24,
+      "name_en": "Morning Delight",
+      "name_ar": "بهجة الصباح",
+      "desc_en": "Freshly baked goodness.",
+      "desc_ar": "مخبوزات طازجة.",
+      "price": 165,
+      "category": "breakfast",
+      "image": "images/photo-1594007654729-407eedc4be65.avif"
+    },
+    {
+      "id": 25,
+      "name_en": "Evening Special",
+      "name_ar": "عرض المساء",
+      "desc_en": "Perfect for a light dinner.",
+      "desc_ar": "مثالي لعشاء خفيف.",
+      "price": 210,
+      "category": "lunch",
+      "image": "images/photo-1607690506833-498e04ab3ffa.avif"
+    },
+    {
+      "id": 26,
+      "name_en": "Cheesy Goodness",
+      "name_ar": "روعة الجبنة",
+      "desc_en": "Melted cheese perfection.",
+      "desc_ar": "روعة الجبنة الذائبة.",
+      "price": 240,
+      "category": "lunch",
+      "image": "images/premium_photo-1676106623583-e68dd66683e3.avif"
+    },
+    {
+      "id": 27,
+      "name_en": "Quick Bite",
+      "name_ar": "وجبة سريعة",
+      "desc_en": "Tasty and quick.",
+      "desc_ar": "لذيذ وسريع.",
+      "price": 90,
+      "category": "breakfast",
+      "image": "images/premium_photo-1695055513621-0fecc05fbe38.avif"
+    },
+    {
+      "id": 28,
+      "name_en": "Special Treat",
+      "name_ar": "وجبة خاصة",
+      "desc_en": "Something special for you.",
+      "desc_ar": "شيء خاص لك.",
+      "price": 200,
+      "category": "lunch",
+      "image": "images/ddc2e761-1f8e-4588-8204-bca34495dc24.avif"
+    },
+    {
+      "name_en": "showrma",
+      "name_ar": "شاورما",
+      "price": 119,
+      "desc_en": "A meal of Arabic shawarma with added pickles ",
+      "desc_ar": "وجبة من الشاورما العربي مع اضافة مخلل ",
+      "image": "images/uploads/720299.jpg",
+      "category": "lunch"
+    }
+  ]
+}

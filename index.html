@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FreshBites | Premium Dining Experience</title>
+    <meta name="description"
+        content="Experience the finest breakfast, lunch, and drinks at FreshBites. Order now via WhatsApp.">
+
+    <!-- Google Fonts: Outfit for premium modern look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-content">
+            <div class="logo">
+                <span class="logo-icon">🌿</span> Fresh<span class="highlight">Bites</span>
+            </div>
+            <div class="header-actions">
+                <button id="lang-toggle" class="lang-btn" aria-label="Switch Language">
+                    <span class="lang-text">AR</span>
+                    <i class="fa-solid fa-globe"></i>
+                </button>
+                <div class="cart-icon-wrapper" id="cart-btn">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span id="cart-count">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <h1 id="hero-title" class="fade-in-up">Taste the <span class="text-gradient">Freshness</span></h1>
+            <p id="hero-subtitle" class="fade-in-up delay-100">Premium ingredients, unforgettable flavors. Order
+                instantly.</p>
+            <a href="#menu" class="cta-button fade-in-up delay-200" id="hero-cta">View Menu</a>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="menu-section">
+        <div class="container">
+            <!-- Category Filter -->
+            <div class="category-filter">
+                <button class="filter-btn active" data-category="all" id="cat-all">All</button>
+                <button class="filter-btn" data-category="breakfast" id="cat-breakfast">Breakfast</button>
+                <button class="filter-btn" data-category="lunch" id="cat-lunch">Lunch</button>
+                <button class="filter-btn" data-category="drinks" id="cat-drinks">Drinks</button>
+            </div>
+
+            <!-- Menu Grid -->
+            <div class="menu-grid" id="menu-grid">
+                <!-- Items will be injected here by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Sticky Cart / Order Bar -->
+    <div class="order-bar" id="order-bar">
+        <div class="container order-bar-content">
+            <div class="order-info">
+                <span id="items-label">0 Items</span>
+                <span class="total-price" id="total-price">$0.00</span>
+            </div>
+            <button id="view-cart-btn" class="whatsapp-btn">
+                <i class="fa-solid fa-cart-shopping"></i> <span id="view-cart-text">View Cart</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div class="cart-modal" id="cart-modal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h2 class="cart-title" id="cart-title">Your Order</h2>
+                <button class="close-cart" id="close-cart">&times;</button>
+            </div>
+            <div class="cart-items" id="cart-items">
+                <!-- Items injected here -->
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span id="total-label">Total</span>
+                    <span id="cart-total-price">0.00 EGP</span>
+                </div>
+                <button id="whatsapp-checkout-btn" class="whatsapp-btn" style="width: 100%; justify-content: center;">
+                    <i class="fa-brands fa-whatsapp"></i> <span id="checkout-text">Order via WhatsApp</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Netlify Identity Widget -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+    <!-- Redirect to Admin on Login -->
+    <script>
+        if (window.netlifyIdentity) {
+            window.netlifyIdentity.on("init", user => {
+                if (!user) {
+                    window.netlifyIdentity.on("login", () => {
+                        document.location.href = "/admin/";
+                    });
+                }
+            });
+        }
+    </script>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
