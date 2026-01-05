@@ -283,18 +283,22 @@ function checkoutToWhatsApp() {
     }
 
     // Construct Message
-    let messageText = currentLang === 'ar' ? "مرحباً، أود أن أطلب:\n\n" : "Hello, I would like to order:\n\n";
+    let messageParts = [];
+    messageParts.push(currentLang === 'ar' ? "مرحباً، أود أن أطلب:" : "Hello, I would like to order:");
 
     cart.forEach(item => {
-        messageText += `- ${item.name} (x${item.quantity}) : ${item.price * item.quantity} EGP\n`;
+        messageParts.push(`- ${item.name} (x${item.quantity}) : ${(item.price * item.quantity).toFixed(2)} EGP`);
     });
 
     const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    messageText += currentLang === 'ar' ? `\n*الإجمالي: ${total.toFixed(2)} EGP*\n` : `\n*Total Order Value: ${total.toFixed(2)} EGP*\n`;
+    messageParts.push(""); // Spacer
+    messageParts.push(currentLang === 'ar' ? `*الإجمالي: ${total.toFixed(2)} EGP*` : `*Total Order Value: ${total.toFixed(2)} EGP*`);
+    messageParts.push(currentLang === 'ar' ? `*عنوان التوصيل:* ${address.trim()}` : `*Delivery Address:* ${address.trim()}`);
 
-    messageText += currentLang === 'ar' ? `\n*عنوان التوصيل:* ${address}` : `\n*Delivery Address:* ${address}`;
+    const finalMessage = messageParts.join('\n');
 
-    const encodedMessage = encodeURIComponent(messageText);
+    // Encode properly for URL
+    const encodedMessage = encodeURIComponent(finalMessage);
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
 
     window.open(whatsappUrl, '_blank');
