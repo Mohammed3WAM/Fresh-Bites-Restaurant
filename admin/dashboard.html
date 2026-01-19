@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fresh Bites - Admin Dashboard</title>
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #e23744;
+            --bg-dark: #121212;
+            --bg-card: #1e1e1e;
+            --text-light: #f4f4f4;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            margin: 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        h2 {
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+        }
+
+        /* Left Panel: Menu Management */
+        .panel {
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .left-panel {
+            border-right: 1px solid #333;
+        }
+
+        .menu-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .menu-table th,
+        .menu-table td {
+            text-align: left;
+            padding: 10px;
+            border-bottom: 1px solid #333;
+        }
+
+        .menu-table input[type="number"] {
+            background: #333;
+            border: none;
+            color: white;
+            padding: 5px;
+            width: 60px;
+            border-radius: 4px;
+        }
+
+        .btn-save {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        /* Right Panel: Kitchen Display */
+        .right-panel {
+            background-color: #000;
+        }
+
+        #orders-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .order-card {
+            background-color: var(--bg-card);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 5px solid yellow;
+            /* Pending color */
+            animation: slideIn 0.3s ease-out;
+        }
+
+        .order-card.completed {
+            border-left-color: green;
+        }
+
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .order-items {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .order-items li {
+            margin-bottom: 5px;
+            border-bottom: 1px dashed #333;
+            padding-bottom: 2px;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- LEFT: Menu Management -->
+    <div class="panel left-panel">
+        <h2>Menu Management</h2>
+        <table class="menu-table">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Price ($)</th>
+                    <th>Available</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="menu-tbody">
+                <!-- Items injected here via JS -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- RIGHT: Kitchen Display -->
+    <div class="panel right-panel">
+        <h2>Kitchen Live Orders <span id="connection-status"
+                style="font-size: 0.5em; color: gray;">(Disconnected)</span></h2>
+        <div id="orders-container">
+            <!-- New orders appear here -->
+        </div>
+    </div>
+
+    <script>
+        // --- CONFIG ---
+        const API_URL = 'http://localhost:3000';
+        const socket = io(API_URL);
+
+        // --- 1. KITCHEN SYSTEM (Socket.io) ---
+        socket.on('connect', () => {
+            document.getElementById('connection-status').innerText = '(Connected)';
+            document.getElementById('connection-status').style.color = 'lime';
+        });
+
+        socket.on('new_order', (order) => {
+            // Play Sound
+            const audio = new Audio('https://www.soundjay.com/buttons/beep-01a.mp3'); // Placeholder sound
+            audio.play().catch(e => console.log('Audio play blocked:', e));
+
+            // Render Card
+            const container = document.getElementById('orders-container');
+            const card = document.createElement('div');
+            card.className = 'order-card';
+            card.innerHTML = `
+                <div class="order-header">
+                    <span>Order #${order.id}</span>
+                    <span>$${order.total_amount}</span>
+                </div>
+                <div style="font-size: 0.9em; margin-bottom: 5px;">
+                    Customer: ${order.customer_info.name || 'Guest'}
+                </div>
+                <ul class="order-items">
+                    ${order.items.map(item => `
+                        <li>${item.quantity}x ${item.name}</li>
+                    `).join('')}
+                </ul>
+            `;
+            container.prepend(card);
+        });
+
+
+        // --- 2. MENU MANAGEMENT ---
+        async function fetchMenu() {
+            // For demo, we might not have DB running, so we'd catch error.
+            try {
+                const res = await fetch(`${API_URL}/api/menu-items`);
+                const items = await res.json();
+                renderMenu(items);
+            } catch (e) {
+                console.error("Could not fetch menu (Make sure Server & DB are running)", e);
+                document.getElementById('menu-tbody').innerHTML = '<tr><td colspan="4">Error connecting to server.</td></tr>';
+            }
+        }
+
+        function renderMenu(items) {
+            const tbody = document.getElementById('menu-tbody');
+            tbody.innerHTML = items.map(item => `
+                <tr>
+                    <td>${item.name}</td>
+                    <td>
+                        <input type="number" id="price-${item.id}" value="${item.price}" />
+                    </td>
+                    <td>
+                        <input type="checkbox" id="avail-${item.id}" ${item.is_available ? 'checked' : ''} />
+                    </td>
+                    <td>
+                        <button class="btn-save" onclick="updateItem(${item.id})">Save</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        async function updateItem(id) {
+            const newPrice = document.getElementById(`price-${id}`).value;
+            const isAvailable = document.getElementById(`avail-${id}`).checked;
+
+            try {
+                await fetch(`${API_URL}/api/menu-item/${id}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        price: newPrice,
+                        is_available: isAvailable
+                    })
+                });
+                alert('Item updated successfully!');
+            } catch (e) {
+                alert('Failed to update item.');
+            }
+        }
+
+        // Init
+        fetchMenu();
+
+    </script>
+</body>
+
+</html>
